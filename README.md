@@ -9,3 +9,5 @@ Solution to various coding question
 
 6.Program to find kth to last element in linked list using recursion.
 
+7.Program to delete a node from linked list such that access to that node is only given.
+
