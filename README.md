@@ -6,3 +6,6 @@ Solution to various coding question
 2.Given an array A[] of size N and an integer K. Your task is to complete the function countDistinct() which prints the count of distinct numbers in all windows of size k in the array A[].
 
 3.Program to tell if the input string  is permutation of a panildrome or not
+
+6.Program to find kth to last element in linked list using recursion.
+
