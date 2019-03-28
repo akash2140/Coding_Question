@@ -12,3 +12,5 @@ Solution to various coding question
 7.Program to delete a node from linked list such that access to that node is only given.
 
 9.Program to add a number represented in form of linkedlist using recursion.
+
+10.Implement a queue such that find_min() can be performed in o(1) time 
