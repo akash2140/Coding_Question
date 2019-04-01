@@ -35,15 +35,42 @@ int query(int tree[],int start, int end, int range_left, int range_right, int cu
 	query(tree,mid+1,end,range_left,range_right,2* current + 1) );
 	
 }
+
+void update(int tree[], int start, int end, int current, int index, int value)
+{
+	int mid;
+	
+	if(start==end)
+	{	if(start==index)
+		tree[current]=value;
+		return ;
+	}
+	
+	mid=(start+end)/2;
+	
+	if(start<=index && index <=mid)
+	{
+		update(tree,start,mid,2*current,index,value);
+	}
+	else
+	{
+		update(tree,mid+1,end,2*current+1,index,value);
+	}
+	
+	tree[current]=tree[ 2*current ]+tree[2*current +1];
+}
 int main()
 {
-	int i,range_left,range_right;
+	int i,range_left,range_right,index,value;
 	int array[10]={1,2,3,4,5,6,7,8,9,10};
 	int tree[21]={0};// Number of element in tree = 2*leaf_node - 1
 	build(array,tree,0,9,1);// building tree
 	
+	
+	cin>>index>>value;
+	update(tree,0,9,1,index,value);
 	while(1)
-	{
+	{	
 		cin>>range_left>>range_right;
 		cout<<query(tree,0,9,range_left-1,range_right-1,1);
 	}
@@ -53,4 +80,3 @@ int main()
 	}
 	cout<<endl;
 }
-
