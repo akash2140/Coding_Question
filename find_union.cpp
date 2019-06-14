@@ -26,26 +26,26 @@ int union_(int parent1,int parent2,int array[])
 		{
 		
 			array[parent2]=parent1;
-			array[parent2]-=1;
+			array[parent1]-=1;
 			
 		}
 		else if(array[parent1] > array[parent2])
 		{
 		
 			array[parent1]=parent2;
-			array[parent1]-=1;
+			array[parent2]-=1;
 		}
 		else
 		{
 			if(parent1<parent2)
 			{
 				array[parent2]=parent1;
-				array[parent2]-=1;
+				array[parent1]-=1;
 			}
 			else
 			{
 				array[parent1]=parent2;
-				array[parent1]-=1;
+				array[parent2]-=1;
 			}
 		}
 }
