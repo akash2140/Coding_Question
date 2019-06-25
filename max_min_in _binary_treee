@@ -1,0 +1,29 @@
+int findMax(struct node* root)
+{
+// Your code goes here
+    if(root == NULL )
+    return 0;
+    
+    int a;
+    a=max(findMax(root->left),findMax(root->right));
+    if(root->data > a)
+    return root->data;
+    else
+    return a;
+}
+// Returns minimum value in a given Binary Tree
+int findMin(struct node* root)
+{
+// Your code goes here
+if(root == NULL )
+    return 100006;
+    
+    int a;
+    a=min(findMin(root->left),findMin(root->right));
+    if(root->data < a)
+    return root->data;
+    else
+    return a;
+}
+
+//data *left  *right in structure
