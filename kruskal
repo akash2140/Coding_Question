@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define vex  vector<pair<int,pair<int,int> > > 
+
+int find(int a,int parent[]){
+
+    while(parent[a]!=a){
+        a=parent[a];
+    }
+    return a;
+}
+int union_(int a,int b,int parent[]){
+    int p1,p2;
+    p1=find(a,parent);
+    p2=find(b,parent);
+    if(p1<p2){
+        parent[p2]=p1;
+    }
+    else{
+        parent[p1]=p2;
+    }
+}
+
+int kruskal(vex graph, vex &result,int vertex){
+    int i,parent[vertex],x,y,k;
+    for(i=0;i<vertex;i++){
+        parent[i]=i;
+    }
+    sort(graph.begin(),graph.end());
+
+    for(i=0;i<vertex-1;){
+        x=graph[k].second.first;
+        y=graph[k].second.second;
+
+        if(find(x,parent)!=find(y,parent)){
+            result.push_back({graph[i].first,{x,y}});
+            union_(x,y,parent);
+            i++;
+        }
+        k++;
+
+    }
+}
+
+int main(){
+
+    vex graph,result;
+    int edge,vertex,x,y,w;
+    cin>>edge>>vertex;
+
+    for(int i=0;i<edge;i++){
+        cin>>x>>y>>w;
+        graph.push_back({w,{x,y}});
+    }
+
+    kruskal(graph,result,vertex);
+    cout<<endl;
+    int min_weight=0;
+    for(int i=0;i<result.size();i++){
+        cout<<result[i].second.first<<" "<<result[i].second.second<<endl;
+        min_weight+=graph[i].first;
+    }
+    cout<<"minimum wight  "<<min_weight<<endl;
+}
