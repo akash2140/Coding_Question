@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define vex  vector<pair<int,int> > 
+
+int minimum(unsigned int key[],unsigned int vertex,unsigned int visited[]){
+    int i=0,pos=0;
+    unsigned min=INT_MAX;
+   
+    for(i=0;i<vertex;i++){
+        if(min> key[i] && visited[i]==0){
+            pos=i;
+            min=key[i];
+        }
+    }
+   // cout<<pos<<endl;
+    return pos;
+}
+ int prims(vex graph[], int vertex){
+    unsigned int parent[vertex],key[vertex],visited[vertex],i;
+    int x,y,w;
+    for(i=0;i<vertex;i++){
+        parent[i]=0;
+        key[i]=INT_MAX;
+        visited[i]=0;
+    }
+    key[0]=0;
+    int j,len,sum=0,k;
+    for(i=0;i<vertex;i++){
+        
+        k=minimum(key,vertex,visited);
+       // cout<<key[k]<<" ";
+        visited[k]=1;
+        sum+=key[k];
+       // result       
+        len=graph[k].size();
+
+        for(j=0;j<len;j++){
+          //  cout<<key[graph[k][j].first]<<endl;
+            if(visited[graph[k][j].first] ==0 && key[graph[k][j].first] > graph[k][j].second){
+                //cout<<graph[k][j].second<<endl;
+                key[graph[k][j].first]=graph[k][j].second;
+                parent[graph[k][j].first]=k;
+                
+            }
+        }
+    }
+    //cout<<sum<<endl;
+    cout<<"parent matrix\n";
+    for(i=0;i<vertex;i++)
+    cout<<parent[i]<<" ";
+    cout<<endl;
+    return sum;
+
+}
+int main(){
+    int edge,vertex,x,y,w;
+    cin>>edge>>vertex;
+
+    vex graph[vertex], result[vertex];
+    
+    for(int i=0;i<edge;i++){
+        cin>>x>>y>>w;
+        graph[x].push_back({y,w});
+        graph[y].push_back({x,w});
+    }
+
+     cout<<   prims(graph,vertex)<<endl;;
+ //   cout<<graph[0][0].first;
+   // cout<<"minimum wight  "<<min_weight<<endl;
+}
