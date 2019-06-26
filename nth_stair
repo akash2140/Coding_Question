@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define MAX 100004
+#define ll long long int
+#define MOD 1000000007
+ll p[100002];
+int main()
+ {
+	ll t,n,i;
+	p[0]=1;
+    p[1]=1;
+    p[2]=2;
+    for(i=3;i<100002+1;i++){
+        p[i]=( (p[i-1]%MOD) + (p[i-2]%MOD))%MOD;
+    }
+	
+	cin>>t;
+	while(t--){
+	    
+	    cin>>n;
+	    cout<<p[n]%MOD<<endl;
+	    
+	}
+	return 0;
+}
