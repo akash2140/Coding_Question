@@ -1,0 +1,52 @@
+//Rabbin karp for string containing number only
+#include<bits/stdc++.h>
+using namespace std;
+bool match(string text,string pattern,int i){
+    int len,k=0,m;
+    //cout<<text<<" "<<pattern<<endl;
+    len=pattern.size();
+    m=i+len;
+    for(;i<m;i++,k++){
+        if(text[i]!=pattern[k]){
+      //      cout<<i<<endl;
+            return false;
+        }
+    }
+    return true;
+}
+int main(){
+    string text,pattern;
+    int m,len,value=0,n,i,h,pattern_hash;
+    vector <int> hash;
+    cin>>text>>pattern;
+
+    n=text.length();
+    m=pattern.length();
+    h=pow(10,m-1);
+
+    value=0;
+    for(i=0;i<m;i++){
+        value=value*10 + (pattern[i]-'0');
+    }
+    pattern_hash=value;
+
+    value=0;
+    for(i=0;i<m;i++){
+        value=value*10 + (text[i]-'0');
+    }
+    hash.push_back(value);
+    for(i=m;i<n;i++){
+        value=10*(value - ((text[i-m]-'0') * h)) + text[i]-'0';
+        hash.push_back(value);
+    }
+   // cout<<pattern_hash<<endl;
+    len=hash.size();
+    for(i=0;i<len;i++){
+        if(hash[i]==pattern_hash){
+            if(match(text,pattern,i))
+            cout<<"Match at "<<i+1<<endl;
+        }
+    }
+
+
+}
