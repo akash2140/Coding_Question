@@ -15,6 +15,7 @@ node * newnode(){
     }
     return temp;
 }
+
 void insert(node *root,string str){
     node *temp;
     int i,len=str.length();
@@ -51,6 +52,40 @@ bool search(node *root,string str){
     return temp->isword;
 }
 
+bool is_word_follow(node *root){
+    int i;
+    for(i=0;i<26;i++){
+        if(root->next[i]!=NULL)
+        return true;
+    }
+    return false;
+}
+
+node * remove_word(node *root,string word,int depth=0){
+
+    //tree is empty
+    if(root==NULL)
+        return NULL;
+    
+    //last letter of word reached
+    if(word.length()==depth){
+        if(root->isword){
+            root->isword=false;
+        }
+        if(!is_word_follow(root)){
+            delete(root);
+            root = NULL;
+        }
+    }
+    //recur till last letter is reached
+    root->next[word[depth]-'a'] = remove_word(root->next[word[depth]-'a'],word,depth+1);
+
+    if(!is_word_follow(root)){
+        delete(root);
+        root=NULL;
+    }
+    return root;
+}
 
 int main(){
 
@@ -63,6 +98,20 @@ int main(){
         cin>>str;
         insert(root,str);
     }
+    cout<<"enter the word to search\n";
     cin>>str;
     (search(root,str))?(cout<<"found\n"):(cout<<"not found\n");
-    }
+
+    cout<<"enter the word to delete\n";
+    cin>>str;
+    remove_word(root,str);
+//    (search(root,str))?(cout<<"found\n"):(cout<<"not found\n");
+
+     cout<<"enter the word to search\n";
+    cin>>str;
+    (search(root,str))?(cout<<"found\n"):(cout<<"not found\n");
+
+     cout<<"enter the word to search\n";
+    cin>>str;
+    (search(root,str))?(cout<<"found\n"):(cout<<"not found\n");
+}
