@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+int solve(int ,vector<int>);
+int main(){
+    int t,money,value,i;
+    vector<int> freq;
+    cin>>t;
+    while(t--){
+        cin>>money;
+        for(i=0;i<4;i++){
+            cin>>value;
+            freq.push_back(value);
+        }
+        cout<<solve(money,freq);
+        freq.clear();
+    }
+}
+//DP not involved just counting 
+//coinage on hackerrank
+int solve(int money, vector<int> freq) {
+    int ans=0;
+    int A,B,C,D,i,j,store[1001]={0};
+    A=freq[0];
+    B=freq[1];
+    C=freq[2];
+    D=freq[3];
+
+    for(i=0;i<=A && i<=money ;i++)
+    for(j=0;j<=B && i+ 2*j<=money;j++)
+    store[i+2*j]++;
+
+
+    for(i=0;i<=C && 5 * i<=money ;i++)
+    for(j=0;j<=D && 5*i + 10* j<=money;j++)
+    ans+=store[money - 5*i - 10*j];
+
+    return ans;
+
+    
+
+
+}
