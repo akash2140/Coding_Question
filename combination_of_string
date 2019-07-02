@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+void combination(int depth,char *array,int start,string str){
+    int i,length;
+    length=str.length();
+    for(i=start;i<length;i++){
+        array[depth]=str[i];
+        array[depth+1]='\0';
+        cout<<array<<endl;
+        if(i<length-1)
+        combination(depth+1,array,i+1,str);
+        
+    }
+}
+int main()
+{
+    string str;
+    cin>>str;
+    char array[str.length()];
+    combination(0,array,0,str);
+}
