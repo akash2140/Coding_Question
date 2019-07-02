@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+int main()
+{
+    ll n,t,i,gcd,lcm;
+    cin>>t;
+    while(t--){
+        
+        cin>>n;
+        if(n==1 || n==0)
+        {cout<<1<<endl;
+        continue;}
+        gcd=__gcd(1,2);
+        lcm=(1*2)/gcd;
+        for(i=3;i<=n;i++){
+            gcd=__gcd(lcm,i);
+            lcm=(lcm*i)/gcd;
+        }
+        cout<<lcm<<endl;
+    }
+	return 0;
+}
