@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+	long long int size,t,i,m,n,max=-1*INT_MAX,sum=0;
+	cin>>t;
+	while(t--){
+	    sum=0;
+	    m=-1;
+	    n=-1;
+	    max=-1*INT_MAX;
+	    cin>>size;
+	    long long int array[size];
+	    for(i=0;i<size;i++){
+	        cin>>array[i];
+	    }
+	    
+	    for(i=0;i<size;i++){
+	        sum+=array[i];
+	        if(sum>max){
+	                max=sum;
+	            }
+	        if(sum<0){
+	            sum=0;
+	        }
+	    }
+	    cout<<max<<endl;
+	}
+	return 0;
+}
